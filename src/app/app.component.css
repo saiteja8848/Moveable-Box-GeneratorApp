@@ -1,0 +1,49 @@
+.main-grid {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    border: 4px solid gainsboro;
+  }
+  
+  .boxes {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    border: 4px solid black;
+  }
+  
+  .box {
+    margin: 8px;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    border-radius: 8px;
+    background-color: #212121;
+    color: white;
+    text-align: center;
+  }
+  
+  
+  .control {
+    background-color: #212121;
+    flex: 1;
+    display: grid;
+    place-items: center;
+  }
+  
+  
+  .button {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  

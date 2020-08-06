@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Moveable-Box-AngularApp"
+    }
+  },
+  "defaultProject": "Moveable-Box-AngularApp",
+  "cli": {
+    "analytics": "b493f6f6-e815-49ec-8a19-9a5b6d3661bd"
+  }
 }
