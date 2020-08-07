@@ -8,10 +8,11 @@ An App to generate new boxes in your app. And move those boxes using your keyboa
 
 # Outcome and Steps involved
 
-- User gets to see a button to add a new box in the window.On clicking the button, a box is created with a unique number Id.Boxes are of fixed width and height.
-  -Higher Id boxes will have higher z-index, so they will created top of one another like stack, to view boxes, click on them and move.
-  -Users can add multiple boxes.
-  -To Select a box,click on it. Highlighting the selected box.
+- User gets to see a button to add a new box in the window.On clicking the button, a box is created with a unique number Id.
+- Boxes are of fixed width and height.
+- Higher Id boxes will have higher z-index, so they will created top of one another like stack, to view boxes, click on them and move.
+- Users can add multiple boxes.
+- To Select a box,click on it. Highlighting the selected box.
 - Use W-A-S-D or arrow keys on the keyboard to move the selected box.
 - Use the delete key on the keyboard to remove the selected box.
 
