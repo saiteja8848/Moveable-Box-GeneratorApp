@@ -1,19 +1,26 @@
-<!-- <header>Moveable-Box-Application</header> -->
+<header>
+  <h1>Moveable Box Generator Application</h1>
+</header>
 
-<!-- This is the main Section subdivided into two divisions -->
-<div class="main-grid">
-  <!-- division-1 displays the created boxes on the view -->
-  <div class="boxes">
+<!-- This Main Section Divided into three Subsections one for Instructions,two for boxes Container and last for create Box Button -->
+<main>
+  <section>
+    <h2>Instructions</h2>
+    <article>
+      * Click on Add Box Button to Add Boxes on the view, Boxes will generated on top of one another,
+      So click on the box and move using keys you can use w,s,a,d,delete,arrow keys, to move,remove the boxes
+      see the created boxes.
+    </article>
+  </section>
+  <section class="boxes-container">
     <ng-container *ngFor="let box of activeListOfBoxes">
-      <div class="box" [id]="box.id" [style.z-index]="box.index" (click)="setWindowListener(box.id)">
-        <span>{{box.id}}</span>
+      <div class="box" [id]="box.Id" [style.z-index]="box.Id" (click)="setWindowListener(box.Id)"
+        style="margin-left: 0px; margin-top: 0px;" [ngClass]="{hightlight:box.Id === activeBoxId}">
+        <span class="text">{{box.Id}}</span>
       </div>
     </ng-container>
-  </div>
-  <!-- division-2 displays the button to add box on the view -->
-  <div class="control">
+  </section>
+  <section>
     <button class="button" (click)="addBoxToView()">Add Box</button>
-  </div>
-</div>
-
-<!-- <footer><h2></h2></footer> -->
+  </section>
+</main>

@@ -7,63 +7,74 @@ import { Component, HostListener } from '@angular/core';
 })
 export class AppComponent {
   title = 'Moveable-Box-AngularApp';
-  count = 1;
+  co_ordinateX: any;
+  co_ordinateY: any;
+  count: number = 1;
   activeListOfBoxes = [];
   currentActiveBox = null;
+  activeBoxId = null;
 
-  // this function creates a box and add to activeListBoxes arrayList, to display on view
+  constructor() {}
+
+  ngOnInit() {}
+
+  //This Function will creates a box and assigns and Id to it to Track
   addBoxToView() {
     const box = {
-      id: `window:${this.count}`,
-      index: this.count,
+      Id: this.count,
     };
     this.activeListOfBoxes.push(box);
     this.count = this.count + 1;
   }
 
-  // this function sets the selected selected Box Id to currentActiveBox
-  setWindowListener(id: string) {
-    this.currentActiveBox = document.getElementById(id);
+  //This is functions gets the selected box id on the view
+  setWindowListener(Id) {
+    this.currentActiveBox = document.getElementById(Id);
+    this.activeBoxId = Id;
   }
 
-  //this function handles the keyboards events on the selected box [up,down,left,right]
+  //This is functions listens for keboard events up,down,left,right
+  // -- depending on the event type it calls the changeCoordinates with respective paramters.
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    const posLeft = this.currentActiveBox.offsetLeft;
-    const posTop = this.currentActiveBox.offsetTop;
-    if (event.key === 'ArrowUp' || event.key.toLowerCase() == 'w') {
-      this.currentActiveBox.style.marginTop = posTop - 58 + 'px';
-      console.log(event.key);
-    }
     if (event.key === 'ArrowDown' || event.key.toLowerCase() == 's') {
-      this.currentActiveBox.style.marginTop = posTop + 58 + 'px';
-      console.log(event.key);
+      this.changeCoordinates('0', '1');
     }
-    if (event.key === 'ArrowLeft' || event.key.toLowerCase() == 'd') {
-      this.currentActiveBox.style.marginLeft = posLeft - 58 + 'px';
-      console.log(event.key);
+    if (event.key === 'ArrowUp' || event.key.toLowerCase() == 'w') {
+      this.changeCoordinates('0', '-1');
     }
-    if (event.key === 'ArrowRight' || event.key.toLowerCase() == 'a') {
-      this.currentActiveBox.style.marginLeft = posLeft + 58 + 'px';
-      console.log(event.key);
+    if (event.key === 'ArrowLeft' || event.key.toLowerCase() == 'a') {
+      this.changeCoordinates('-1', '0');
+    }
+    if (event.key === 'ArrowRight' || event.key.toLowerCase() == 'd') {
+      this.changeCoordinates('1', '0');
     }
     if (event.key === 'Delete') {
       this.currentActiveBox.parentNode.removeChild(this.currentActiveBox);
     }
+  }
 
-    // switch (event.key.toLowerCase()) {
-    //   case "arrowup":
-    //     this.currentActiveBox.style.marginTop = posTop - 58 + "px";
-    //     break;
-    //   case "arrowdown":
-    //     this.currentActiveBox.style.marginTop = posTop + 58 + "px";
-    //     break;
-    //   case "arrowleft":
-    //     this.currentActiveBox.style.marginLeft = posLeft - 58 + "px";
-    //     break;
-    //   case "arrowright":
-    //     this.currentActiveBox.style.marginLeft = posLeft + 58 + "px";
-    //     break;
-    // }
+  //Depending on the current position, it will calculates and moves the element.
+  changeCoordinates(dx, dy) {
+    if (this.currentActiveBox != null) {
+      this.co_ordinateX = this.currentActiveBox.style.marginLeft;
+      this.co_ordinateY = this.currentActiveBox.style.marginTop;
+      this.co_ordinateX = parseInt(this.co_ordinateX) + 15 * dx;
+      this.co_ordinateY = parseInt(this.co_ordinateY) + 15 * dy;
+      if (this.co_ordinateX < 0) {
+        this.co_ordinateX = 0;
+      }
+      if (this.co_ordinateY < 0) {
+        this.co_ordinateY = 0;
+      }
+      if (this.co_ordinateX > 770) {
+        this.co_ordinateX = 770;
+      }
+      if (this.co_ordinateY > 330) {
+        this.co_ordinateY = 330;
+      }
+      this.currentActiveBox.style.marginLeft = this.co_ordinateX + 'px';
+      this.currentActiveBox.style.marginTop = this.co_ordinateY + 'px';
+    }
   }
 }
